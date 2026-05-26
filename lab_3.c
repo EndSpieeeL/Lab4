@@ -3,9 +3,15 @@
 #include <string.h>
 #include <unistd.h>
 
+#define SUCCESS 0
+
+#define OFFSET 50
+#define NUM_OF_CHARS 100
+
 void heap_demo() {
-    char *buf = (char*)malloc(sizeof(char) * 100);
+    char *buf = (char*)malloc(sizeof(char) * NUM_OF_CHARS);
     if (!buf){
+        printf("Не удалось выделить память для buf\n");
         return;
     }
 
@@ -17,8 +23,9 @@ void heap_demo() {
     
     printf("2: %s\n", buf);
     
-    char *buf2 = (char*)malloc(sizeof(char) * 100);
+    char *buf2 = (char*)malloc(sizeof(char) * NUM_OF_CHARS);
     if (!buf2){
+        printf("Не удалось выделить память для buf2\n");
         return;
     }
     
@@ -26,7 +33,7 @@ void heap_demo() {
     
     printf("3: %s\n", buf2);
     
-    char *mid = buf2 + 50;
+    char *mid = buf2 + OFFSET;
     
     free(mid);
     
@@ -37,5 +44,5 @@ int main() {
     
     heap_demo();
     
-    return 0;
+    return SUCCESS;
 }
